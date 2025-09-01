@@ -37,7 +37,7 @@ dev = [
     # Pin typer for Safety CLI compatibility
     "typer<0.18",
     # Pin marshmallow for Safety schema compatibility
-    "marshmallow<4",
+    "marshmallow<5",
     # Address GHSA-9548-qrrj-x5pj: ensure safe aiohttp version in dev env
     "aiohttp>=3.12.14",
     # Address cryptography advisory: ensure safe version in dev env
@@ -57,7 +57,7 @@ security = [
   # Pin typer for Safety CLI compatibility
   "typer<0.18",
   # Pin marshmallow for Safety schema compatibility
-  "marshmallow<4",
+  "marshmallow<5",
   # Ensure safe aiohttp version in security scan environment
   "aiohttp>=3.12.14",
   # Ensure safe cryptography version in security scan environment
@@ -242,7 +242,7 @@ dev = [
     "bandit>=1.7.0",
     "pip-audit>=2.7.0",
     "typer<0.18",
-    "marshmallow<4",
+    "marshmallow<5",
     "aiohttp>=3.12.14",
     "cryptography>=44.0.1",
     "jinja2>=3.1.6",
@@ -254,7 +254,7 @@ security = [
     "bandit>=1.7.0",
     "pip-audit>=2.7.0",
     "typer<0.18",
-    "marshmallow<4",
+    "marshmallow<5",
     "aiohttp>=3.12.14",
     "cryptography>=44.0.1",
     "jinja2>=3.1.6",
