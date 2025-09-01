@@ -1,18 +1,18 @@
 {
   "domain": "escpos_printer",
   "name": "ESC/POS Thermal Printer",
-  "version": "0.1.0",
+  "codeowners": ["@cognitivegears"],
+  "config_flow": true,
   "documentation": "https://github.com/cognitivegears/ha-escpos-thermal-printer#readme",
+  "integration_type": "service",
+  "iot_class": "local_push",
   "issue_tracker": "https://github.com/cognitivegears/ha-escpos-thermal-printer/issues",
+  "loggers": ["escpos"],
   "requirements": [
     "python-escpos==3.1",
     "Pillow==11.0.0",
     "qrcode==7.4.2",
     "python-barcode==0.16.1"
   ],
-  "codeowners": ["@cognitivegears"],
-  "iot_class": "local_push",
-  "integration_type": "service",
-  "config_flow": true,
-  "loggers": ["escpos"]
+  "version": "0.1.0"
 }

@@ -1,6 +1,7 @@
 print_text:
   name: print_text
   description: Print text to the ESC/POS printer
+  target: {}
   fields:
     text:
       required: true
@@ -12,9 +13,9 @@ print_text:
       selector:
         select:
           options:
-            - left
-            - center
-            - right
+            - "left"
+            - "center"
+            - "right"
     bold:
       selector:
         boolean: {}
@@ -22,23 +23,23 @@ print_text:
       selector:
         select:
           options:
-            - none
-            - single
-            - double
+            - "none"
+            - "single"
+            - "double"
     width:
       selector:
         select:
           options:
-            - normal
-            - double
-            - triple
+            - "normal"
+            - "double"
+            - "triple"
     height:
       selector:
         select:
           options:
-            - normal
-            - double
-            - triple
+            - "normal"
+            - "double"
+            - "triple"
     encoding:
       selector:
         text: {}
@@ -46,9 +47,9 @@ print_text:
       selector:
         select:
           options:
-            - none
-            - partial
-            - full
+            - "none"
+            - "partial"
+            - "full"
     feed:
       selector:
         number:
@@ -60,6 +61,7 @@ print_text:
 print_qr:
   name: print_qr
   description: Print a QR code
+  target: {}
   fields:
     data:
       required: true
@@ -77,24 +79,24 @@ print_qr:
       selector:
         select:
           options:
-            - L
-            - M
-            - Q
-            - H
+            - "L"
+            - "M"
+            - "Q"
+            - "H"
     align:
       selector:
         select:
           options:
-            - left
-            - center
-            - right
+            - "left"
+            - "center"
+            - "right"
     cut:
       selector:
         select:
           options:
-            - none
-            - partial
-            - full
+            - "none"
+            - "partial"
+            - "full"
     feed:
       selector:
         number:
@@ -106,6 +108,7 @@ print_qr:
 print_image:
   name: print_image
   description: Print an image by URL or local path
+  target: {}
   fields:
     image:
       required: true
@@ -119,16 +122,16 @@ print_image:
       selector:
         select:
           options:
-            - left
-            - center
-            - right
+            - "left"
+            - "center"
+            - "right"
     cut:
       selector:
         select:
           options:
-            - none
-            - partial
-            - full
+            - "none"
+            - "partial"
+            - "full"
     feed:
       selector:
         number:
@@ -140,6 +143,7 @@ print_image:
 feed:
   name: feed
   description: Feed the paper a number of lines
+  target: {}
   fields:
     lines:
       required: true
@@ -153,18 +157,20 @@ feed:
 cut:
   name: cut
   description: Cut the paper
+  target: {}
   fields:
     mode:
       required: true
       selector:
         select:
           options:
-            - full
-            - partial
+            - "full"
+            - "partial"
 
 print_barcode:
   name: print_barcode
   description: Print a barcode
+  target: {}
   fields:
     code:
       required: true
@@ -177,18 +183,18 @@ print_barcode:
       selector:
         select:
           options:
-            - EAN13
-            - EAN8
-            - JAN13
-            - JAN8
-            - UPC-A
-            - UPC-E
-            - CODE39
-            - CODE93
-            - CODE128
-            - ITF
-            - ITF14
-            - CODABAR
+            - "EAN13"
+            - "EAN8"
+            - "JAN13"
+            - "JAN8"
+            - "UPC-A"
+            - "UPC-E"
+            - "CODE39"
+            - "CODE93"
+            - "CODE128"
+            - "ITF"
+            - "ITF14"
+            - "CODABAR"
     height:
       selector:
         number:
@@ -207,16 +213,16 @@ print_barcode:
       selector:
         select:
           options:
-            - ABOVE
-            - BELOW
-            - BOTH
-            - OFF
+            - "ABOVE"
+            - "BELOW"
+            - "BOTH"
+            - "OFF"
     font:
       selector:
         select:
           options:
-            - A
-            - B
+            - "A"
+            - "B"
     align_ct:
       selector:
         boolean: {}
@@ -227,25 +233,25 @@ print_barcode:
       selector:
         select:
           options:
-            - true
-            - false
-            - graphics
-            - bitImageColumn
-            - bitImageRaster
+            - "true"
+            - "false"
+            - "graphics"
+            - "bitImageColumn"
+            - "bitImageRaster"
     align:
       selector:
         select:
           options:
-            - left
-            - center
-            - right
+            - "left"
+            - "center"
+            - "right"
     cut:
       selector:
         select:
           options:
-            - none
-            - partial
-            - full
+            - "none"
+            - "partial"
+            - "full"
     feed:
       selector:
         number:
@@ -257,6 +263,7 @@ print_barcode:
 beep:
   name: beep
   description: Trigger the printer buzzer (if supported)
+  target: {}
   fields:
     times:
       selector:

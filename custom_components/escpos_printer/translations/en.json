@@ -42,78 +42,78 @@
       "name": "Print text",
       "description": "Print text to the ESC/POS printer.",
       "fields": {
-        "text": {"name": "Text"},
-        "align": {"name": "Alignment"},
-        "bold": {"name": "Bold"},
-        "underline": {"name": "Underline"},
-        "width": {"name": "Width multiplier"},
-        "height": {"name": "Height multiplier"},
-        "encoding": {"name": "Encoding"},
-        "cut": {"name": "Cut"},
-        "feed": {"name": "Feed lines"}
+        "text": {"name": "Text", "description": "Text content to print."},
+        "align": {"name": "Alignment", "description": "Horizontal alignment for the text."},
+        "bold": {"name": "Bold", "description": "Render text in bold font."},
+        "underline": {"name": "Underline", "description": "Underline mode for text."},
+        "width": {"name": "Width multiplier", "description": "Text width multiplier (1–3)."},
+        "height": {"name": "Height multiplier", "description": "Text height multiplier (1–3)."},
+        "encoding": {"name": "Encoding", "description": "Character encoding/codepage for text."},
+        "cut": {"name": "Cut", "description": "Cut mode after printing."},
+        "feed": {"name": "Feed lines", "description": "Lines to feed after printing."}
       }
     },
     "print_qr": {
       "name": "Print QR",
       "description": "Print a QR code.",
       "fields": {
-        "data": {"name": "Data"},
-        "size": {"name": "Size"},
-        "ec": {"name": "Error correction"},
-        "align": {"name": "Alignment"},
-        "cut": {"name": "Cut"},
-        "feed": {"name": "Feed lines"}
+        "data": {"name": "Data", "description": "Data content to encode in the QR code."},
+        "size": {"name": "Size", "description": "Module size for the QR code (1–16)."},
+        "ec": {"name": "Error correction", "description": "QR error correction level (L/M/Q/H)."},
+        "align": {"name": "Alignment", "description": "Horizontal alignment for the QR code."},
+        "cut": {"name": "Cut", "description": "Cut mode after printing."},
+        "feed": {"name": "Feed lines", "description": "Lines to feed after printing."}
       }
     },
     "print_image": {
       "name": "Print image",
       "description": "Print an image by URL or local path.",
       "fields": {
-        "image": {"name": "Image"},
-        "high_density": {"name": "High density"},
-        "align": {"name": "Alignment"},
-        "cut": {"name": "Cut"},
-        "feed": {"name": "Feed lines"}
+        "image": {"name": "Image", "description": "Path or URL to the image to print."},
+        "high_density": {"name": "High density", "description": "Use high density image mode if supported."},
+        "align": {"name": "Alignment", "description": "Horizontal alignment for the image."},
+        "cut": {"name": "Cut", "description": "Cut mode after printing."},
+        "feed": {"name": "Feed lines", "description": "Lines to feed after printing."}
       }
     },
     "feed": {
       "name": "Feed",
       "description": "Feed the paper by a number of lines.",
       "fields": {
-        "lines": {"name": "Lines"}
+        "lines": {"name": "Lines", "description": "Number of lines to feed."}
       }
     },
     "cut": {
       "name": "Cut",
       "description": "Cut the paper.",
       "fields": {
-        "mode": {"name": "Mode"}
+        "mode": {"name": "Mode", "description": "Cut mode (full or partial)."}
       }
     },
     "print_barcode": {
       "name": "Print barcode",
       "description": "Print a barcode.",
       "fields": {
-        "code": {"name": "Code"},
-        "bc": {"name": "Type"},
-        "height": {"name": "Height"},
-        "width": {"name": "Width"},
-        "pos": {"name": "Text position"},
-        "font": {"name": "Font"},
-        "align_ct": {"name": "Center align"},
-        "check": {"name": "Validate code"},
-        "force_software": {"name": "Force software renderer"},
-        "align": {"name": "Alignment"},
-        "cut": {"name": "Cut"},
-        "feed": {"name": "Feed lines"}
+        "code": {"name": "Code", "description": "Barcode data to print."},
+        "bc": {"name": "Type", "description": "Barcode symbology to use."},
+        "height": {"name": "Height", "description": "Barcode height in dots (1–255)."},
+        "width": {"name": "Width", "description": "Barcode module width (2–6)."},
+        "pos": {"name": "Text position", "description": "Human-readable text position (ABOVE/BELOW/BOTH/OFF)."},
+        "font": {"name": "Font", "description": "Font for human-readable text (A or B)."},
+        "align_ct": {"name": "Center align", "description": "Center the barcode on the line."},
+        "check": {"name": "Validate code", "description": "Enable checksum/validation when supported."},
+        "force_software": {"name": "Force software renderer", "description": "Force software rendering mode to improve compatibility."},
+        "align": {"name": "Alignment", "description": "Horizontal alignment for the barcode."},
+        "cut": {"name": "Cut", "description": "Cut mode after printing."},
+        "feed": {"name": "Feed lines", "description": "Lines to feed after printing."}
       }
     },
     "beep": {
       "name": "Beep",
       "description": "Trigger the printer buzzer (if supported).",
       "fields": {
-        "times": {"name": "Times"},
-        "duration": {"name": "Duration"}
+        "times": {"name": "Times", "description": "Number of beep cycles."},
+        "duration": {"name": "Duration", "description": "Duration of each beep in units supported by the printer."}
       }
     }
   }
