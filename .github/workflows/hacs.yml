@@ -12,45 +12,33 @@ jobs:
       pull-requests: read
     steps:
       - uses: actions/checkout@v4
+      # Skip metadata mutation on PRs and forks; this requires elevated permissions.
       - name: Ensure repository metadata (description, topics)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-
             const desiredDescription = "Network thermal printer integration for Home Assistant using ESC/POS (HACS)";
-            const desiredTopics = [
-              "hacs",
-              "home-assistant",
-              "integration",
-              "custom-component",
-              "escpos",
-              "thermal-printer",
-              "printer"
-            ];
-
-            // Fetch current repo data
-            const { data: repoData } = await github.rest.repos.get({ owner, repo });
-
-            // Update description if missing
-            if (!repoData.description || repoData.description.trim() === "") {
-              core.info("Setting repository description for HACS validation...");
-              await github.rest.repos.update({ owner, repo, description: desiredDescription });
-            }
-
-            // Ensure required topics are present
-            const { data: topics } = await github.rest.repos.getAllTopics({ owner, repo });
-            const current = new Set(topics.names || []);
-            let updated = false;
-            for (const t of desiredTopics) {
-              if (!current.has(t)) { current.add(t); updated = true; }
-            }
-            if (updated) {
-              core.info("Adding required repository topics for HACS validation...");
-              await github.rest.repos.replaceAllTopics({ owner, repo, names: Array.from(current) });
-            } else {
-              core.info("Repository topics already include required values.");
+            const desiredTopics = ["hacs","home-assistant","integration","custom-component","escpos","thermal-printer","printer"];
+            try {
+              const { data: repoData } = await github.rest.repos.get({ owner, repo });
+              if (!repoData.description || repoData.description.trim() === "") {
+                core.info("Setting repository description for HACS validation...");
+                await github.rest.repos.update({ owner, repo, description: desiredDescription });
+              }
+              const { data: topics } = await github.rest.repos.getAllTopics({ owner, repo });
+              const current = new Set(topics.names || []);
+              let updated = false;
+              for (const t of desiredTopics) { if (!current.has(t)) { current.add(t); updated = true; } }
+              if (updated) {
+                core.info("Adding required repository topics for HACS validation...");
+                await github.rest.repos.replaceAllTopics({ owner, repo, names: Array.from(current) });
+              }
+            } catch (e) {
+              core.warning(`Skipping metadata update due to permissions: ${e.message}`);
             }
       - name: HACS validation
         uses: hacs/action@main
