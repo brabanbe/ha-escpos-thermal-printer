@@ -36,7 +36,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e .[dev,security]
+          # Install only the minimal security toolchain to avoid heavy resolver backtracking
+          pip install -e .[security]
 
       - name: Run security scan script
         run: |
