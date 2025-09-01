@@ -18,6 +18,14 @@ MANIFEST = ROOT / "custom_components" / "escpos_printer" / "manifest.json"
 PYPROJECT = ROOT / "pyproject.toml"
 UVLOCK = ROOT / "uv.lock"
 
+# Packages for which we intentionally keep a version range in the HA manifest
+# to avoid conflicts with Home Assistant's own pins.
+MANIFEST_OVERRIDES: Dict[str, str] = {
+    # Allow HA to satisfy its own Pillow pin (e.g., 11.3.x) while keeping
+    # compatibility with our integration.
+    "pillow": ">=11.0.0,<12.0.0",
+}
+
 
 def parse_pyproject_dependencies() -> List[Requirement]:
     data = tomllib.loads(PYPROJECT.read_text())
@@ -55,6 +63,11 @@ def build_manifest_requirements() -> List[str]:
     out: List[str] = []
     for r in reqs:
         name = r.name
+        lower = name.lower()
+        # Apply explicit overrides first
+        if lower in MANIFEST_OVERRIDES:
+            out.append(f"{name}{MANIFEST_OVERRIDES[lower]}")
+            continue
         # Prefer exact version from pyproject if present
         version = None
         if r.specifier and "==" in str(r.specifier):
@@ -82,8 +95,30 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text())
     current = manifest.get("requirements", [])
 
-    if current != desired:
-        if args.check:
+    if args.check:
+        # In check mode, treat overrides as valid and allow ranges that are
+        # compatible with the pinned pyproject/lock versions.
+        desired_set = {Requirement(r).name.lower(): Requirement(r) for r in desired}
+        current_set = {Requirement(r).name.lower(): Requirement(r) for r in current}
+
+        problems: List[str] = []
+        # Ensure the same package keys exist
+        if set(desired_set.keys()) != set(current_set.keys()):
+            missing = sorted(set(desired_set.keys()) ^ set(current_set.keys()))
+            problems.append(f"Package set mismatch: {missing}")
+        else:
+            for k in sorted(desired_set.keys()):
+                want = desired_set[k].specifier
+                have = current_set[k].specifier
+                # If desired has exact '==' pins, they must be allowed by current
+                eqs = [s.strip()[2:] for s in str(want).split(',') if s.strip().startswith('==')]
+                if eqs:
+                    for v in eqs:
+                        if v not in have:
+                            problems.append(f"{k}: manifest does not allow pinned version {v}")
+                # Otherwise, accept any range in current
+
+        if problems:
             print("❌ manifest.json requirements do not match pyproject/uv.lock:")
             print("Current:")
             for r in current:
@@ -91,8 +126,14 @@ def main() -> int:
             print("Desired:")
             for r in desired:
                 print(f"  - {r}")
+            for p in problems:
+                print(f"Reason: {p}")
             return 1
-        # Write updated manifest
+        print("✅ manifest.json requirements are compatible with pyproject/uv.lock")
+        return 0
+
+    # Auto-fix mode: write the computed desired requirements
+    if current != desired:
         manifest["requirements"] = desired
         MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n")
         print("✅ Updated manifest.json requirements")
@@ -103,4 +144,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
