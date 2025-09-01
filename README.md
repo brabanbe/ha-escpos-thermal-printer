@@ -10,7 +10,7 @@ A comprehensive Home Assistant integration for ESC/POS thermal printers that ena
 
 The above is an example receipt printed using this integration.
 
-*NOTE:* This project has been developed as a side project for me to integrate my own thermal printer into Home Assistant. As such, this is fully *vibe coded* - do not expect this to work in your own environment, though it does in mine. If this is useful to you, please consider contributing or adapting it for your needs.
+*NOTE:* This project has been developed as a side project for me to integrate my own thermal printer into Home Assistant. As such, this has not had extensive testing with mulitple printers, or with features my printer doesn't support (particularly image support is implemented but hasn't been tested) - do not expect this to work in your own environment, though it does in mine. If this is useful to you, please consider contributing or adapting it for your needs.
 
 ## Features
 
@@ -24,12 +24,15 @@ The above is an example receipt printed using this integration.
 ## Requirements
 
 ### System Requirements
+
 - **Home Assistant**: 2024.8 or later
 - **Network Printer**: ESC/POS compatible thermal printer reachable on TCP port 9100 (default)
 - **Network Connectivity**: Printer must be accessible from your Home Assistant instance
 
 ### Dependencies
+
 This integration automatically installs required Python packages, including:
+
 - python-escpos — Core ESC/POS printing library
 - Pillow — Image processing for printing images
 - qrcode — QR code generation
@@ -62,6 +65,7 @@ This integration automatically installs required Python packages, including:
 
 1. **Download the Integration**:
    - Clone or download this repository to any temporary folder on your machine, then copy only the component folder into Home Assistant:
+
    ```bash
    # On your workstation or HA host shell
    git clone https://github.com/cognitivegears/ha-escpos-thermal-printer.git
@@ -117,6 +121,7 @@ After initial setup, you can modify additional settings:
 Most ESC/POS thermal printers support network connectivity. Here's how to configure common models:
 
 #### Epson TM Series Printers
+
 1. **Connect to Network**:
    - Connect the printer to your network using Ethernet cable
    - Power on the printer and wait for initialization
@@ -126,12 +131,14 @@ Most ESC/POS thermal printers support network connectivity. Here's how to config
    - Look for the IP address on the printed receipt
 
 3. **Test Connectivity**:
+
    ```bash
    # From your Home Assistant host, test connection
    telnet <PRINTER_IP> 9100
    ```
 
 #### Other ESC/POS Compatible Printers
+
 - **Star Micronics**: Follow similar Ethernet setup procedures
 - **Citizen Printers**: Use the printer's web interface or configuration utility
 - **Generic ESC/POS**: Ensure the printer supports raw TCP printing on port 9100
@@ -594,6 +601,7 @@ python -m pytest tests/
 ### Developer Utilities
 
 - Framework smoke test (no Home Assistant required):
+
   ```bash
   python scripts/framework_smoke_test.py
   ```
