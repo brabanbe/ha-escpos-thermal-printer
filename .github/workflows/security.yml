@@ -50,8 +50,16 @@ jobs:
           path: security_report.md
 
       - name: Safety - Dependency vulnerability scan
+        env:
+          SAFETY_API_KEY: ${{ secrets.SAFETY_API_KEY }}
         run: |
-          safety check --full-report --output safety-report.json || true
+          # Use new 'scan' with API key if available; otherwise use legacy 'check' to avoid interactive auth
+          if [ -n "$SAFETY_API_KEY" ]; then
+            safety scan --key "$SAFETY_API_KEY" --json -o safety-report.json || true
+          else
+            echo "No SAFETY_API_KEY provided; using legacy 'check' (deprecated)"
+            safety check --full-report --output safety-report.json || true
+          fi
 
       - name: Bandit - Python security linting
         run: |
