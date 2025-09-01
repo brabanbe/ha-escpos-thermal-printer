@@ -6,7 +6,11 @@
 
 A comprehensive Home Assistant integration for ESC/POS thermal printers that enables printing text, QR codes, barcodes, images, and more through intuitive services and automation.
 
-*NOTE:* This project has been developed as a side project for me to integrate my own thermal printer into Home Assistant. As such, this is fully *vibe coded slop* - do not expect this to work in your own environment. If this is useful to you, please consider contributing or adapting it for your needs.
+![Printed Receipt Example](docs/assets/receipt.png)
+
+The above is an example receipt printed using this integration.
+
+*NOTE:* This project has been developed as a side project for me to integrate my own thermal printer into Home Assistant. As such, this is fully *vibe coded* - do not expect this to work in your own environment, though it does in mine. If this is useful to you, please consider contributing or adapting it for your needs.
 
 ## Features
 
