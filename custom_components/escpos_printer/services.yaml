@@ -1,0 +1,274 @@
+print_text:
+  name: print_text
+  description: Print text to the ESC/POS printer
+  fields:
+    text:
+      required: true
+      example: "Hello, world!"
+      selector:
+        text:
+          multiline: true
+    align:
+      selector:
+        select:
+          options:
+            - left
+            - center
+            - right
+    bold:
+      selector:
+        boolean: {}
+    underline:
+      selector:
+        select:
+          options:
+            - none
+            - single
+            - double
+    width:
+      selector:
+        select:
+          options:
+            - normal
+            - double
+            - triple
+    height:
+      selector:
+        select:
+          options:
+            - normal
+            - double
+            - triple
+    encoding:
+      selector:
+        text: {}
+    cut:
+      selector:
+        select:
+          options:
+            - none
+            - partial
+            - full
+    feed:
+      selector:
+        number:
+          min: 0
+          max: 10
+          step: 1
+          mode: slider
+
+print_qr:
+  name: print_qr
+  description: Print a QR code
+  fields:
+    data:
+      required: true
+      example: "https://example.com"
+      selector:
+        text: {}
+    size:
+      selector:
+        number:
+          min: 1
+          max: 16
+          step: 1
+          mode: slider
+    ec:
+      selector:
+        select:
+          options:
+            - L
+            - M
+            - Q
+            - H
+    align:
+      selector:
+        select:
+          options:
+            - left
+            - center
+            - right
+    cut:
+      selector:
+        select:
+          options:
+            - none
+            - partial
+            - full
+    feed:
+      selector:
+        number:
+          min: 0
+          max: 10
+          step: 1
+          mode: slider
+
+print_image:
+  name: print_image
+  description: Print an image by URL or local path
+  fields:
+    image:
+      required: true
+      example: "/config/www/logo.png"
+      selector:
+        text: {}
+    high_density:
+      selector:
+        boolean: {}
+    align:
+      selector:
+        select:
+          options:
+            - left
+            - center
+            - right
+    cut:
+      selector:
+        select:
+          options:
+            - none
+            - partial
+            - full
+    feed:
+      selector:
+        number:
+          min: 0
+          max: 10
+          step: 1
+          mode: slider
+
+feed:
+  name: feed
+  description: Feed the paper a number of lines
+  fields:
+    lines:
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 10
+          step: 1
+          mode: slider
+
+cut:
+  name: cut
+  description: Cut the paper
+  fields:
+    mode:
+      required: true
+      selector:
+        select:
+          options:
+            - full
+            - partial
+
+print_barcode:
+  name: print_barcode
+  description: Print a barcode
+  fields:
+    code:
+      required: true
+      example: "4006381333931"
+      selector:
+        text: {}
+    bc:
+      required: true
+      example: "EAN13"
+      selector:
+        select:
+          options:
+            - EAN13
+            - EAN8
+            - JAN13
+            - JAN8
+            - UPC-A
+            - UPC-E
+            - CODE39
+            - CODE93
+            - CODE128
+            - ITF
+            - ITF14
+            - CODABAR
+    height:
+      selector:
+        number:
+          min: 1
+          max: 255
+          step: 1
+          mode: slider
+    width:
+      selector:
+        number:
+          min: 2
+          max: 6
+          step: 1
+          mode: slider
+    pos:
+      selector:
+        select:
+          options:
+            - ABOVE
+            - BELOW
+            - BOTH
+            - OFF
+    font:
+      selector:
+        select:
+          options:
+            - A
+            - B
+    align_ct:
+      selector:
+        boolean: {}
+    check:
+      selector:
+        boolean: {}
+    force_software:
+      selector:
+        select:
+          options:
+            - true
+            - false
+            - graphics
+            - bitImageColumn
+            - bitImageRaster
+    align:
+      selector:
+        select:
+          options:
+            - left
+            - center
+            - right
+    cut:
+      selector:
+        select:
+          options:
+            - none
+            - partial
+            - full
+    feed:
+      selector:
+        number:
+          min: 0
+          max: 10
+          step: 1
+          mode: slider
+
+beep:
+  name: beep
+  description: Trigger the printer buzzer (if supported)
+  fields:
+    times:
+      selector:
+        number:
+          min: 1
+          max: 10
+          step: 1
+          mode: slider
+    duration:
+      selector:
+        number:
+          min: 1
+          max: 10
+          step: 1
+          mode: slider

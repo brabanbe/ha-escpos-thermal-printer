@@ -1,0 +1,10 @@
+# Example service calls in YAML
+
+# Developer Tools -> Actions -> YAML mode
+service: escpos_printer.print_text
+data:
+  text: "Hello from Home Assistant!"
+  align: center
+  bold: true
+  cut: partial
+  feed: 2

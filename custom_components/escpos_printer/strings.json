@@ -1,0 +1,120 @@
+{
+  "title": "ESC/POS Thermal Printer",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure printer",
+        "description": "Enter the connection details for your ESC/POS network printer.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "timeout": "Timeout (seconds)",
+          "codepage": "Encoding/codepage",
+          "default_align": "Default alignment",
+          "default_cut": "Default cut mode"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to printer.",
+      "already_configured": "This printer is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Printer options",
+        "data": {
+          "timeout": "Timeout (seconds)",
+          "codepage": "Encoding/codepage",
+          "profile": "Printer profile (optional)",
+          "line_width": "Characters per line (columns)",
+          "default_align": "Default alignment",
+          "default_cut": "Default cut mode",
+          "keepalive": "Keep persistent connection",
+          "status_interval": "Status check interval (seconds)"
+        }
+      }
+    }
+  },
+  "services": {
+    "print_text": {
+      "name": "Print text",
+      "description": "Print text to the ESC/POS printer.",
+      "fields": {
+        "text": {"name": "Text"},
+        "align": {"name": "Alignment"},
+        "bold": {"name": "Bold"},
+        "underline": {"name": "Underline"},
+        "width": {"name": "Width multiplier"},
+        "height": {"name": "Height multiplier"},
+  "encoding": {"name": "Encoding"},
+  "cut": {"name": "Cut"},
+  "feed": {"name": "Feed lines"}
+      }
+    },
+    "print_qr": {
+      "name": "Print QR",
+      "description": "Print a QR code.",
+      "fields": {
+        "data": {"name": "Data"},
+        "size": {"name": "Size"},
+        "ec": {"name": "Error correction"},
+        "align": {"name": "Alignment"},
+        "cut": {"name": "Cut"},
+        "feed": {"name": "Feed lines"}
+      }
+    },
+    "print_image": {
+      "name": "Print image",
+      "description": "Print an image by URL or local path.",
+      "fields": {
+        "image": {"name": "Image"},
+        "high_density": {"name": "High density"},
+        "align": {"name": "Alignment"},
+        "cut": {"name": "Cut"},
+        "feed": {"name": "Feed lines"}
+      }
+    },
+    "feed": {
+      "name": "Feed",
+      "description": "Feed the paper by a number of lines.",
+      "fields": {
+        "lines": {"name": "Lines"}
+      }
+    },
+    "cut": {
+      "name": "Cut",
+      "description": "Cut the paper.",
+      "fields": {
+        "mode": {"name": "Mode"}
+      }
+    },
+    "print_barcode": {
+      "name": "Print barcode",
+      "description": "Print a barcode.",
+      "fields": {
+        "code": {"name": "Code"},
+        "bc": {"name": "Type"},
+        "height": {"name": "Height"},
+        "width": {"name": "Width"},
+        "pos": {"name": "Text position"},
+        "font": {"name": "Font"},
+        "align_ct": {"name": "Center align"},
+        "check": {"name": "Validate code"},
+        "force_software": {"name": "Force software renderer"},
+        "align": {"name": "Alignment"},
+        "cut": {"name": "Cut"},
+        "feed": {"name": "Feed lines"}
+      }
+    },
+    "beep": {
+      "name": "Beep",
+      "description": "Trigger the printer buzzer (if supported).",
+      "fields": {
+        "times": {"name": "Times"},
+        "duration": {"name": "Duration"}
+      }
+    }
+  }
+}

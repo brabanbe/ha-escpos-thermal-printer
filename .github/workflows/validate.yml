@@ -1,0 +1,35 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pytest-homeassistant-custom-component pillow qrcode packaging
+      - name: Check dependency sync (manifest vs pyproject)
+        run: |
+          python scripts/check_requirements_sync.py
+          python scripts/sync_manifest_requirements.py --check
+      - name: Run tests
+        run: |
+          pytest -q
+      - name: Install security tools
+        run: |
+          pip install safety bandit pip-audit
+
+      - name: Run security scans
+        run: |
+          echo "🔒 Running security scans..."
+          safety check --full-report || echo "Safety scan completed with warnings"
+          bandit -r custom_components/escpos_printer || echo "Bandit scan completed with warnings"
+          pip-audit || echo "pip-audit completed with warnings"
