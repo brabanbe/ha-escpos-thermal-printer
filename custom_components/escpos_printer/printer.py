@@ -298,7 +298,7 @@ class EscposPrinterAdapter:
 
                 # Set style
                 if hasattr(printer, "set"):
-                    printer.set(align=align_m, bold=bool(bold), underline=ul, width=wmult, height=hmult, invert=bool(invert))
+                    printer.set(align='center', font='b', bold=False, underline=0, width=3, height=3, density=9, invert=False, smooth=False, flip=False, double_width=True, double_height=True, custom_size=True)
 
                 # Encoding is best-effort; python-escpos handles str internally.
                 if encoding:
