@@ -271,18 +271,20 @@ class EscposPrinterAdapter:
         align: Optional[str] = None,
         bold: Optional[bool] = None,
         underline: Optional[str] = None,
-        width: Optional[str] = None,
-        height: Optional[str] = None,
         encoding: Optional[str] = None,
         cut: Optional[str] = DEFAULT_CUT,
         feed: Optional[int] = 0,
+        width: Optional[int] = 1,
+        density: Optional[int] = 1,
+        feed: Optional[int] = 1,
         invert: Optional[bool] = None,
+        flip: Optional[bool] = None,
+        smooth: Optional[bool] = None,
+
     ) -> None:
         text = validate_text_input(text)
         align_m = self._map_align(align)
         ul = self._map_underline(underline)
-        wmult = self._map_multiplier(width)
-        hmult = self._map_multiplier(height)
         text_to_print = self._wrap_text(text)
 
         def _do_print():
@@ -298,7 +300,7 @@ class EscposPrinterAdapter:
 
                 # Set style
                 if hasattr(printer, "set"):
-                    printer.set(align='center', font='b', bold=False, underline=0, width=3, height=3, density=9, invert=False, smooth=False, flip=False, double_width=True, double_height=True, custom_size=True)
+                    printer.set(align=align_m, font='b', bold=bold, underline=ul, width=width, height=height, density=density, invert=invert, smooth=smooth, flip=flip, custom_size=True)
 
                 # Encoding is best-effort; python-escpos handles str internally.
                 if encoding:
