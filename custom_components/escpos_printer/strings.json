@@ -51,6 +51,8 @@
         "encoding": {"name": "Encoding", "description": "Character encoding/codepage for text."},
         "cut": {"name": "Cut", "description": "Cut mode after printing."},
         "feed": {"name": "Feed lines", "description": "Lines to feed after printing."}
+        "invert": {"name": "Invert", "description": "Render text invert."},
+
       }
     },
     "print_qr": {
