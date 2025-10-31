@@ -26,6 +26,7 @@ from .const import (
     ATTR_EC,
     ATTR_ENCODING,
     ATTR_FEED,
+    ATTR_INVERT,
     ATTR_FONT,
     ATTR_FORCE_SOFTWARE,
     ATTR_HEIGHT,
