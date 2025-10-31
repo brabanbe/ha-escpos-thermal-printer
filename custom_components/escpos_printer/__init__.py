@@ -106,6 +106,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 encoding=call.data.get(ATTR_ENCODING),
                 cut=call.data.get(ATTR_CUT, defaults.get("cut")),
                 feed=call.data.get(ATTR_FEED),
+                invert=call.data.get(ATTR_INVERT),
             )
         except Exception as err:
             _LOGGER.exception("Service print_text failed: %s", err)
