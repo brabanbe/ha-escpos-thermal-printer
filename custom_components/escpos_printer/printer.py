@@ -276,6 +276,7 @@ class EscposPrinterAdapter:
         encoding: Optional[str] = None,
         cut: Optional[str] = DEFAULT_CUT,
         feed: Optional[int] = 0,
+        invert: Optional[bool] = None,
     ) -> None:
         text = validate_text_input(text)
         align_m = self._map_align(align)
@@ -297,7 +298,7 @@ class EscposPrinterAdapter:
 
                 # Set style
                 if hasattr(printer, "set"):
-                    printer.set(align=align_m, bold=bool(bold), underline=ul, width=wmult, height=hmult)
+                    printer.set(align=align_m, bold=bool(bold), underline=ul, width=wmult, height=hmult, invert=bool(invert))
 
                 # Encoding is best-effort; python-escpos handles str internally.
                 if encoding:
