@@ -28,18 +28,25 @@ print_text:
             - "double"
     width:
       selector:
-        select:
-          options:
-            - "normal"
-            - "double"
-            - "triple"
+        number:
+          min: 1
+          max: 8
+          step: 1
+          mode: slider
     height:
       selector:
-        select:
-          options:
-            - "normal"
-            - "double"
-            - "triple"
+        number:
+          min: 1
+          max: 8
+          step: 1
+          mode: slider
+    density:
+      selector:
+        number:
+          min: 0
+          max: 8
+          step: 1
+          mode: slider
     encoding:
       selector:
         text: {}
@@ -60,7 +67,12 @@ print_text:
     invert:
       selector:
         boolean: {}
-
+    flip:
+      selector:
+        boolean: {}
+    smooth:
+      selector:
+        boolean: {}
 print_qr:
   name: print_qr
   description: Print a QR code
