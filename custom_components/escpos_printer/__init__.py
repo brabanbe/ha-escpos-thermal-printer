@@ -26,6 +26,9 @@ from .const import (
     ATTR_EC,
     ATTR_ENCODING,
     ATTR_FEED,
+    ATTR_FLIP,
+    ATTR_SMOOTH,
+    ATTR_DENSITY,
     ATTR_INVERT,
     ATTR_FONT,
     ATTR_FORCE_SOFTWARE,
@@ -104,10 +107,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 underline=call.data.get(ATTR_UNDERLINE),
                 width=call.data.get(ATTR_WIDTH),
                 height=call.data.get(ATTR_HEIGHT),
+                density=call.data.get(ATTR_DENSITY),
                 encoding=call.data.get(ATTR_ENCODING),
                 cut=call.data.get(ATTR_CUT, defaults.get("cut")),
                 feed=call.data.get(ATTR_FEED),
                 invert=call.data.get(ATTR_INVERT),
+                flip=call.data.get(ATTR_FLIP),
+                smooth=call.data.get(ATTR_SMOOTH,
             )
         except Exception as err:
             _LOGGER.exception("Service print_text failed: %s", err)
