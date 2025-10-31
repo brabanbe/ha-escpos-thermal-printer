@@ -57,6 +57,9 @@ print_text:
           max: 10
           step: 1
           mode: slider
+    invert:
+      selector:
+        boolean: {}
 
 print_qr:
   name: print_qr
