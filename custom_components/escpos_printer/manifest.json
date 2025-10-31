@@ -1,6 +1,6 @@
 {
   "domain": "escpos_printer",
-  "name": "ESC/POS Thermal Printer",
+  "name": "ESC/POS Thermal Printerbla",
   "codeowners": [
     "@cognitivegears"
   ],
