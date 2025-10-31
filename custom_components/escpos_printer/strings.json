@@ -46,13 +46,15 @@
         "align": {"name": "Alignment", "description": "Horizontal alignment for the text."},
         "bold": {"name": "Bold", "description": "Render text in bold font."},
         "underline": {"name": "Underline", "description": "Underline mode for text."},
-        "width": {"name": "Width multiplier", "description": "Text width multiplier (1–3)."},
-        "height": {"name": "Height multiplier", "description": "Text height multiplier (1–3)."},
+        "width": {"name": "Width", "description": "Text width  (1–8)."},
+        "height": {"name": "Height", "description": "Text height  (1–8)."},
+        "density": {"name": "Density", "description": "Text density  (0–8)."},
         "encoding": {"name": "Encoding", "description": "Character encoding/codepage for text."},
         "cut": {"name": "Cut", "description": "Cut mode after printing."},
         "feed": {"name": "Feed lines", "description": "Lines to feed after printing."}
         "invert": {"name": "Invert", "description": "Render text invert."},
-
+        "smooth": {"name": "Smooth", "description": "Render text smooth."},
+        "flip": {"name": "Flip", "description": "Flips Text upside down"},
       }
     },
     "print_qr": {
