@@ -68,10 +68,14 @@ class EscposNotifyEntity(NotifyEntity):
                 underline="none",
                 width=1,
                 height=1,
+                density=9,
                 encoding=None,
                 cut=data.get("cut", defaults.get("cut")),
                 feed=data.get("feed", 0),
                 invert=False,
+                flip=False,
+                smooth=False,
+
             )
         except Exception as err:  # Bubble up to notify error handling
             _LOGGER.error("print_text failed: %s", err)
